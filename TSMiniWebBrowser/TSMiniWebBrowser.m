@@ -529,6 +529,12 @@ enum actionSheetButtonIndex {
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    // Ignore NSURLErrorDomain error -999.
+    if (error.code == NSURLErrorCancelled) return;
+
+    // Ignore "Frame Load Interrupted" errors. Seen after app store links.
+    if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) return;
+
     [self hideActivityIndicators];
     
     // To avoid getting an error alert when you click on a link
