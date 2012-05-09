@@ -164,8 +164,12 @@ enum actionSheetButtonIndex {
         [toolBarButtons addObject:buttonReload];
     }
     if (showActionButton) {
-        [toolBarButtons addObject:fixedSpace2];
-        [toolBarButtons addObject:buttonAction];
+        if (mode == TSMiniWebBrowserModeNavigation) {
+            [self.navigationItem setRightBarButtonItem:buttonAction];
+        } else {
+            [toolBarButtons addObject:fixedSpace2];
+            [toolBarButtons addObject:buttonAction];
+        }
     }
     
     // Set buttons to tool bar
