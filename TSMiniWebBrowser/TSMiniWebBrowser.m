@@ -323,6 +323,7 @@
         [actionSheet showInView:self.tabBarController.view];
         
     } else {
+        
         [actionSheet showInView:self.view];
     }
     
